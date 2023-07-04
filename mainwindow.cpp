@@ -309,27 +309,50 @@ void MainWindow::refresh(bool forced)
     statusBar()->showMessage(tr("Refreshing..."));
 
     QStringList arguments;
+    if (m_plantUmlPath.endsWith(".jar"))
+    {
+        arguments
+                << "-jar" << m_plantUmlPath
+                << QString("-t%1").arg(m_imageFormatNames[m_currentImageFormat]);
+        if (m_useCustomGraphiz)
+            arguments << "-graphvizdot" << m_graphizPath;
+        arguments << "-charset" << "UTF-8" << "-pipe";
+        qDebug() << "Command to run:" << m_javaPath << arguments;
 
-    arguments
-            << "-jar" << m_plantUmlPath
+        m_lastKey = key;
+        m_process = new QProcess(this);
+
+        connect(m_process, SIGNAL(finished(int)), this, SLOT(refreshFinished()));
+
+        QFileInfo fi(m_documentPath);
+        m_process->setWorkingDirectory(fi.absolutePath());
+
+        m_process->start(m_javaPath, arguments);
+    }
+    else
+    {
+        arguments
             << QString("-t%1").arg(m_imageFormatNames[m_currentImageFormat]);
-    if (m_useCustomGraphiz)
-        arguments << "-graphvizdot" << m_graphizPath;
-    arguments << "-charset" << "UTF-8" << "-pipe";
+        if (m_useCustomGraphiz)
+            arguments << "-graphvizdot" << m_graphizPath;
+        arguments << "-charset" << "UTF-8" << "-pipe";
 
-    m_lastKey = key;
-    m_process = new QProcess(this);
+        qDebug() << "Command to run:" << m_plantUmlPath << arguments;
 
-    QFileInfo fi(m_documentPath);
-    m_process->setWorkingDirectory(fi.absolutePath());
+        m_lastKey = key;
+        m_process = new QProcess(this);
 
-    m_process->start(m_javaPath, arguments);
+        connect(m_process, SIGNAL(finished(int)), this, SLOT(refreshFinished()));
+
+        QFileInfo fi(m_documentPath);
+        m_process->setWorkingDirectory(fi.absolutePath());
+
+        m_process->start(m_plantUmlPath, arguments);
+    }
     if (!m_process->waitForStarted()) {
         qDebug() << "refresh subprocess failed to start";
         return;
     }
-
-    connect(m_process, SIGNAL(finished(int)), this, SLOT(refreshFinished()));
 
     m_process->write(current_document);
     m_process->closeWriteChannel();
