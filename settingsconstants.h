@@ -82,10 +82,12 @@ const int TIMEOUT_SCALE = 1000;
 const QString SETTINGS_CUSTOM_JAVA_PATH_DEFAULT = "C:/Program Files (x86)/Java/jre7/bin/java.exe";
 const QString SETTINGS_CUSTOM_PLANTUML_PATH_DEFAULT = "C:/plantuml.jar";
 const QString SETTINGS_CUSTOM_GRAPHIZ_PATH_DEFAULT = "C:/Program Files (x86)/Graphviz 2.28/dot.exe";
+const QString SETTINGS_ASSISTENT_XML_PATH_DEFAULT = "assistent.xml";
 #else
 const QString SETTINGS_CUSTOM_JAVA_PATH_DEFAULT = "/usr/bin/java";
 const QString SETTINGS_CUSTOM_PLANTUML_PATH_DEFAULT = "/usr/bin/plantuml";
 const QString SETTINGS_CUSTOM_GRAPHIZ_PATH_DEFAULT = "/usr/bin/dot";
+const QString SETTINGS_ASSISTENT_XML_PATH_DEFAULT = "/usr/share/applications/plantumlqeditor-assistent.xml";
 #endif
 
 #endif // SETTINGSCONSTANTS_H

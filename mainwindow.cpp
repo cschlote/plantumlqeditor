@@ -600,6 +600,8 @@ void MainWindow::readSettings(bool reload)
     m_customGraphizPath = settings.value(SETTINGS_CUSTOM_GRAPHIZ_PATH, SETTINGS_CUSTOM_GRAPHIZ_PATH_DEFAULT).toString();
     m_graphizPath = m_useCustomGraphiz ? m_customGraphizPath : SETTINGS_CUSTOM_GRAPHIZ_PATH_DEFAULT;
 
+    m_assistantXmlPath = settings.value(SETTINGS_ASSISTANT_XML_PATH, SETTINGS_ASSISTENT_XML_PATH_DEFAULT).toString();
+
     checkPaths();
 
     m_useCache = settings.value(SETTINGS_USE_CACHE, SETTINGS_USE_CACHE_DEFAULT).toBool();
