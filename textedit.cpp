@@ -103,7 +103,7 @@ int TextEdit::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = 3 + fontMetrics().width(QLatin1Char('9')) * digits;
+    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
 
     return space;
 }
@@ -216,7 +216,7 @@ void TextEdit::paintEvent(QPaintEvent *e)
 {
     // Update tab stops
     QString indentLine = QString().leftJustified(_indentSize, QChar(' '));
-    setTabStopWidth(fontMetrics().width(indentLine));
+    setTabStopDistance(fontMetrics().horizontalAdvance(indentLine));
 
     QPlainTextEdit::paintEvent(e);
 }

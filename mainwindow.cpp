@@ -1028,7 +1028,7 @@ void MainWindow::createStatusBar()
 
     QFontMetrics font_metrics(m_exportPathLabel->font());
     m_cacheSizeLabel = new QLabel(this);
-    m_cacheSizeLabel->setMinimumWidth(font_metrics.width(tr(CACHE_SIZE_FORMAT_STRING).arg("#.## Mb")));
+    m_cacheSizeLabel->setMinimumWidth(font_metrics.horizontalAdvance(tr(CACHE_SIZE_FORMAT_STRING).arg("#.## Mb")));
 
     m_autoRefreshLabel = new QLabel(this);
     m_autoRefreshLabel->setText(tr(AUTOREFRESH_STATUS_LABEL));
