@@ -1150,7 +1150,7 @@ void MainWindow::checkPaths()
 
 void MainWindow::reloadAssistantXml(const QString &path)
 {
-    if (m_assistantXmlPath != path) {
+    if (true || m_assistantXmlPath != path) {
         m_assistantXmlPath = path;
 
         foreach (QListWidget* widget, m_assistantWidgets) {
