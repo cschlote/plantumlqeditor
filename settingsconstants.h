@@ -87,7 +87,7 @@ const QString SETTINGS_ASSISTENT_XML_PATH_DEFAULT = "assistent.xml";
 const QString SETTINGS_CUSTOM_JAVA_PATH_DEFAULT = "/usr/bin/java";
 const QString SETTINGS_CUSTOM_PLANTUML_PATH_DEFAULT = "/usr/bin/plantuml";
 const QString SETTINGS_CUSTOM_GRAPHIZ_PATH_DEFAULT = "/usr/bin/dot";
-const QString SETTINGS_ASSISTENT_XML_PATH_DEFAULT = "/usr/share/applications/plantumlqeditor-assistent.xml";
+const QString SETTINGS_ASSISTENT_XML_PATH_DEFAULT = "/usr/share/applications/plantumlqeditor/assistent.xml";
 #endif
 
 #endif // SETTINGSCONSTANTS_H
