@@ -23,6 +23,7 @@
 #include "filecache.h"
 #include "settingsconstants.h"
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QSettings>
 #include <QDesktopServices>
@@ -314,15 +315,31 @@ void PreferencesDialog::checkExternalPrograms()
         if (!QFileInfo(plantUmlPath).exists()) {
             log += invalidPathLog;
         } else {
-            checkExternalProgram(javaPath,
-                                 QStringList()
-                                 << "-jar"
-                                 << plantUmlPath
-                                 << "-graphvizdot"
-                                 << graphizPath
-                                 << "-testdot",
-                                 log,
-                                 ".*Installation seems OK. File generation OK$");
+            if (plantUmlPath.endsWith(".jar"))
+
+            {
+                qDebug() << "Testing with a plantuml JAR file.";
+                checkExternalProgram(javaPath,
+                                     QStringList()
+                                     << "-jar"
+                                     << plantUmlPath
+                                     << "-graphvizdot"
+                                     << graphizPath
+                                     << "-testdot",
+                                     log,
+                                     ".*Installation seems OK. File generation OK$");
+            }
+            else
+            {
+                qDebug() << "Testing with a plantuml wrapper.";
+                checkExternalProgram(plantUmlPath,
+                                     QStringList()
+                                         << "-graphvizdot"
+                                         << graphizPath
+                                         << "-testdot",
+                                     log,
+                                     ".*Installation seems OK. File generation OK$");
+            }
         }
     }
 
